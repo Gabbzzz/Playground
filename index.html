@@ -301,150 +301,88 @@ body::after{
 
     font-size:16px;
 }
+/* WELCOME FRAME */
 
-/* WELCOME BOX */
-
-.welcome-box{
-
-    position:relative;
-
-    background:
-    linear-gradient(
-    to bottom,
-    rgba(25,8,45,0.82),
-    rgba(8,2,20,0.92));
-
-    border:
-    1px solid rgba(210,140,255,0.22);
-
-    border-radius:28px;
-
-    padding:18px;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 0 30px rgba(140,0,255,0.18),
-    inset 0 0 30px rgba(255,255,255,0.03);
-
-}
-
-/* INNER FRAME */
-
-.welcome-inner{
-
-    border:
-    1px solid rgba(255,255,255,0.06);
-
-    border-radius:22px;
-
-    padding:
-    70px 60px;
+.welcome-frame{
 
     position:relative;
 
-    overflow:hidden;
+    width:100%;
+
+    max-width:1500px;
+
+    margin:
+    70px auto 20px auto;
 }
 
-/* MAGIC CORNERS */
+/* FRAME IMAGE */
 
-.welcome-inner::before{
+.frame-img{
 
-    content:"";
+    width:100%;
+
+    display:block;
+
+    pointer-events:none;
+}
+
+/* CONTENT INSIDE */
+
+.frame-content{
 
     position:absolute;
 
-    inset:14px;
+    inset:0;
 
-    border:
-    1px solid rgba(180,120,255,0.12);
+    display:flex;
 
-    border-radius:16px;
+    flex-direction:column;
 
-    pointer-events:none;
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:
+    150px 180px;
 }
 
 /* TITLE */
 
-.welcome-title{
+.frame-title{
 
     font-family:'Cinzel', serif;
 
-    font-size:92px;
+    font-size:110px;
 
     font-weight:700;
 
-    text-align:center;
+    color:#f1d2ff;
 
-    color:#f0c8ff;
-
-    margin-bottom:25px;
+    margin-bottom:50px;
 
     text-shadow:
-    0 0 12px #c96cff,
-    0 0 35px rgba(180,80,255,0.8),
-    0 0 60px rgba(120,0,255,0.5);
-}
-
-/* DIVIDER */
-
-.welcome-divider{
-
-    width:220px;
-    height:2px;
-
-    margin:
-    0 auto 45px auto;
-
-    background:
-    linear-gradient(to right,
-    transparent,
-    #d98cff,
-    transparent);
-
-    box-shadow:
-    0 0 12px #d98cff;
+    0 0 12px #d06fff,
+    0 0 35px rgba(180,80,255,0.9),
+    0 0 60px rgba(120,0,255,0.6);
 }
 
 /* TEXT */
 
-.welcome-text{
+.frame-text{
 
-    font-size:28px;
+    font-size:30px;
 
     line-height:2;
 
-    text-align:center;
+    color:#f5ebff;
 
-    color:#f1e8ff;
-
-    font-weight:300;
+    max-width:1100px;
 
     text-shadow:
     0 0 10px rgba(180,120,255,0.12);
 }
-
-/* MAGIC GLOW */
-
-.welcome-box::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:700px;
-    height:700px;
-
-    background:
-    radial-gradient(circle,
-    rgba(170,80,255,0.12),
-    transparent 70%);
-
-    top:-250px;
-    right:-200px;
-
-    pointer-events:none;
-}    
     
 /* FOOTER */
 
@@ -653,17 +591,19 @@ footer{
 
 <section class="content">
 
-    <div class="welcome-box">
+    <section class="welcome-frame">
 
-    <div class="welcome-inner">
+    <!-- RÁMEČEK -->
+    <img src="ramecek.png" alt="Rámeček" class="frame-img">
 
-        <h1 class="welcome-title">
+    <!-- TEXT -->
+    <div class="frame-content">
+
+        <h1 class="frame-title">
             Vítejte,
         </h1>
 
-        <div class="welcome-divider"></div>
-
-        <p class="welcome-text">
+        <p class="frame-text">
 
             Vstupte do světa Eutopie — místa,
             kde magie prostupuje moderní společností
@@ -689,7 +629,6 @@ footer{
         </p>
 
     </div>
- </div>       
 </section>
 
 <!-- FOOTER -->
