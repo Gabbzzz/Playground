@@ -275,66 +275,80 @@ footer{
 
 /* BUTTONS */
 
+/* BUTTON CONTAINER */
+
 .hero-buttons{
+
     position:absolute;
 
-    bottom:25px;
+    bottom:22px;
     left:50%;
 
     transform:translateX(-50%);
 
-    width:100%;
+    width:95%;
 
     display:flex;
-    justify-content:center;
-    gap:28px;
 
-    z-index:10;
+    justify-content:space-between;
 
-    flex-wrap:wrap;
+    align-items:center;
+
+    z-index:15;
 }
+
+/* BUTTON */
 
 .magic-btn{
 
-    font-family:'Orbitron', sans-serif;
+    position:relative;
 
-    color:#f3dcff;
+    width:23%;
 
-    text-decoration:none;
-
-    font-size:24px;
-
-    letter-spacing:2px;
-
-    padding:18px 38px;
-
-    min-width:260px;
+    padding:18px 10px;
 
     text-align:center;
 
+    text-decoration:none;
+
+    font-family:'Orbitron', sans-serif;
+
+    font-size:22px;
+
+    letter-spacing:2px;
+
+    color:#f4ddff;
+
     background:
     linear-gradient(to bottom,
-    rgba(80,20,140,0.55),
-    rgba(30,5,60,0.78));
+    rgba(70,15,120,0.72),
+    rgba(20,0,45,0.92));
 
     border:
-    2px solid rgba(210,140,255,0.75);
+    2px solid rgba(210,140,255,0.85);
 
-    border-radius:18px;
-
-    position:relative;
+    clip-path:polygon(
+    12px 0%,
+    calc(100% - 12px) 0%,
+    100% 12px,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    12px 100%,
+    0% calc(100% - 12px),
+    0% 12px
+    );
 
     overflow:hidden;
 
     box-shadow:
-    0 0 10px rgba(180,80,255,0.5),
-    0 0 25px rgba(120,0,255,0.35),
-    inset 0 0 15px rgba(255,255,255,0.06);
+    0 0 8px rgba(190,100,255,0.7),
+    0 0 18px rgba(120,0,255,0.5),
+    inset 0 0 10px rgba(255,255,255,0.08);
 
     transition:0.35s;
 }
 
-/* GLOW */
+/* INNER GLOW */
 
 .magic-btn::before{
 
@@ -342,37 +356,87 @@ footer{
 
     position:absolute;
 
-    inset:0;
+    inset:2px;
 
-    background:
-    linear-gradient(120deg,
-    transparent,
-    rgba(255,255,255,0.12),
-    transparent);
+    border:
+    1px solid rgba(255,255,255,0.14);
 
-    transform:translateX(-100%);
+    clip-path:polygon(
+    10px 0%,
+    calc(100% - 10px) 0%,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0% calc(100% - 10px),
+    0% 10px
+    );
 
-    transition:0.6s;
+    pointer-events:none;
+}
+
+/* MAGIC CORNERS */
+
+.magic-btn::after{
+
+    content:"✦";
+
+    position:absolute;
+
+    top:-10px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:12px;
+
+    color:#e9b8ff;
+
+    text-shadow:
+    0 0 10px #d26cff;
 }
 
 /* HOVER */
 
 .magic-btn:hover{
 
-    transform:translateY(-4px) scale(1.03);
+    transform:
+    translateY(-3px)
+    scale(1.03);
+
+    border-color:#ffd6ff;
 
     box-shadow:
-    0 0 15px rgba(210,120,255,0.7),
-    0 0 40px rgba(120,0,255,0.55),
-    inset 0 0 20px rgba(255,255,255,0.1);
-
-    border-color:#f0b4ff;
+    0 0 12px rgba(220,140,255,0.9),
+    0 0 35px rgba(140,0,255,0.7),
+    inset 0 0 14px rgba(255,255,255,0.1);
 }
 
-.magic-btn:hover::before{
-    transform:translateX(100%);
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero-buttons{
+
+    width:92%;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
 }
 
+.magic-btn{
+
+    width:47%;
+
+    font-size:16px;
+
+    padding:14px 8px;
+}
+
+}
 /* MOBILE */
 
 @media(max-width:768px){
