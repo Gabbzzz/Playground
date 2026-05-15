@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Eutopia RPG</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#05010d;
+    color:white;
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND EFFECT */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top, rgba(143,0,255,0.18), transparent 40%),
+    radial-gradient(circle at bottom, rgba(93,0,255,0.12), transparent 40%);
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+    radial-gradient(rgba(180,120,255,0.25) 1px, transparent 1px);
+    background-size:60px 60px;
+    opacity:0.15;
+    z-index:-1;
+}
+
+/* HEADER */
+
+.hero{
+    width:100%;
+    height:700px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid rgba(170,120,255,0.2);
+}
+
+/* SEM VLOŽÍŠ OBRÁZEK */
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    filter:
+    brightness(0.75)
+    saturate(1.2);
+}
+
+/* DARK OVERLAY */
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(to bottom,
+    rgba(5,1,13,0.15),
+    rgba(5,1,13,0.55),
+    #05010d);
+}
+
+/* GLOW */
+
+.glow{
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:radial-gradient(circle,
+    rgba(170,80,255,0.22),
+    transparent 70%);
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+    z-index:2;
+}
+
+/* TITLE */
+
+.title-box{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index:5;
+    padding:20px;
+}
+
+.title{
+    font-family:'Orbitron', sans-serif;
+    font-size:clamp(60px, 9vw, 140px);
+    font-weight:700;
+    letter-spacing:8px;
+
+    color:#f5e9ff;
+
+    text-shadow:
+    0 0 10px #c770ff,
+    0 0 25px #b14cff,
+    0 0 45px #8d2dff;
+}
+
+/* RPG TEXT */
+
+.subtitle{
+    margin-top:10px;
+
+    font-family:'Orbitron', sans-serif;
+
+    letter-spacing:10px;
+    font-size:22px;
+
+    color:#dcb8ff;
+
+    text-shadow:
+    0 0 10px rgba(191,97,255,0.9);
+}
+
+/* PARTICLES */
+
+.particle{
+    position:absolute;
+    border-radius:50%;
+    background:#bb7cff;
+    opacity:0.7;
+    animation:float linear infinite;
+}
+
+.p1{
+    width:4px;
+    height:4px;
+    left:20%;
+    top:70%;
+    animation-duration:7s;
+}
+
+.p2{
+    width:6px;
+    height:6px;
+    left:65%;
+    top:80%;
+    animation-duration:10s;
+}
+
+.p3{
+    width:3px;
+    height:3px;
+    left:80%;
+    top:60%;
+    animation-duration:8s;
+}
+
+.p4{
+    width:5px;
+    height:5px;
+    left:40%;
+    top:85%;
+    animation-duration:12s;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0px);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-300px);
+        opacity:0;
+    }
+}
+
+/* CONTENT */
+
+.content{
+    max-width:1200px;
+    margin:auto;
+    padding:80px 25px;
+}
+
+.card{
+    background:rgba(15,10,30,0.75);
+    border:1px solid rgba(170,120,255,0.15);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:
+    0 0 30px rgba(120,0,255,0.08);
+
+    margin-bottom:30px;
+}
+
+.card h2{
+    font-family:'Orbitron', sans-serif;
+    margin-bottom:15px;
+    color:#d9a8ff;
+}
+
+.card p{
+    line-height:1.8;
+    color:#d5d0df;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#8b7e9d;
+    border-top:1px solid rgba(170,120,255,0.12);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero{
+    height:520px;
+}
+
+.subtitle{
+    font-size:16px;
+    letter-spacing:6px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+
+    <!-- SEM DÁŠ SVŮJ OBRÁZEK -->
+    <img src="header.jpg" alt="Eutopia RPG">
+
+    <div class="glow"></div>
+
+    <div class="title-box">
+
+        <h1 class="title">EUTOPIA</h1>
+
+        <div class="subtitle">RPG</div>
+
+    </div>
+
+    <!-- MAGICKÁ SVĚTÝLKA -->
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+
+</header>
+
+<section class="content">
+
+    <div class="card">
+        <h2>Vítej v Eutopii</h2>
+
+        <p>
+            Moderní svět nikdy nebyl obyčejný.
+            Magie existuje mezi lidmi, skrytá ve stínech neonových měst,
+            tajných organizací a prastarých rituálů.
+            Vyber si vlastní cestu a vstup do světa,
+            kde technologie a magie splývají v jedno.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Aktuální dění</h2>
+
+        <p>
+            Ve městě byly zaznamenány zvláštní energetické výkyvy.
+            Několik mágů zmizelo beze stopy
+            a podzemní frakce začínají znovu nabývat síly.
+        </p>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Eutopia RPG
+</footer>
+
+</body>
+</html>
