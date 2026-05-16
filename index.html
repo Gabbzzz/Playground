@@ -543,6 +543,241 @@ footer{
     inset 0 0 14px rgba(255,255,255,0.1);
 }
 
+    /* COMMENT SECTION */
+
+.comment-section{
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:
+    80px auto;
+
+}
+
+/* BOX */
+
+.comment-box{
+
+    background:
+    linear-gradient(
+    to bottom,
+    rgba(22,8,40,0.92),
+    rgba(8,2,20,0.95));
+
+    border:
+    1px solid rgba(200,120,255,0.22);
+
+    border-radius:28px;
+
+    padding:40px;
+
+    box-shadow:
+    0 0 30px rgba(140,0,255,0.15);
+
+    margin-bottom:40px;
+}
+
+/* TITLE */
+
+.comment-title{
+
+    font-family:'Orbitron', sans-serif;
+
+    font-size:42px;
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+    color:#f1d0ff;
+
+    text-shadow:
+    0 0 12px #c86cff,
+    0 0 30px rgba(180,80,255,0.6);
+}
+
+/* INPUTS */
+
+.comment-box input,
+.comment-box textarea{
+
+    width:100%;
+
+    background:
+    rgba(10,2,25,0.92);
+
+    border:
+    1px solid rgba(190,120,255,0.2);
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    color:white;
+
+    font-size:20px;
+
+    font-family:'Inter', sans-serif;
+
+    outline:none;
+
+    box-shadow:
+    inset 0 0 12px rgba(140,0,255,0.08);
+}
+
+.comment-box textarea{
+
+    min-height:220px;
+
+    resize:vertical;
+}
+
+/* PLACEHOLDER */
+
+.comment-box input::placeholder,
+.comment-box textarea::placeholder{
+
+    color:#b79acb;
+}
+
+/* BUTTON */
+
+.send-btn{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-family:'Orbitron', sans-serif;
+
+    font-size:22px;
+
+    color:white;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    to bottom,
+    rgba(120,30,220,0.9),
+    rgba(60,0,120,0.95));
+
+    box-shadow:
+    0 0 18px rgba(170,80,255,0.5);
+
+    transition:0.3s;
+}
+
+.send-btn:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:
+    0 0 25px rgba(200,120,255,0.7);
+}
+
+/* HELP */
+
+.format-help{
+
+    margin-top:18px;
+
+    color:#bda8d6;
+
+    text-align:center;
+
+    font-size:16px;
+}
+
+/* COMMENTS */
+
+.comment{
+
+    position:relative;
+
+    display:flex;
+
+    gap:25px;
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+    to bottom,
+    rgba(18,6,35,0.88),
+    rgba(8,2,20,0.95));
+
+    border:
+    1px solid rgba(190,120,255,0.16);
+
+    box-shadow:
+    0 0 20px rgba(120,0,255,0.08);
+}
+
+/* AVATAR */
+
+.comment-avatar{
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+    2px solid rgba(210,140,255,0.5);
+
+    box-shadow:
+    0 0 18px rgba(170,80,255,0.3);
+}
+
+/* CONTENT */
+
+.comment-content{
+
+    flex:1;
+}
+
+/* NAME */
+
+.comment-name{
+
+    font-family:'Orbitron', sans-serif;
+
+    font-size:24px;
+
+    color:#f1d0ff;
+
+    margin-bottom:15px;
+
+    text-shadow:
+    0 0 10px rgba(180,80,255,0.5);
+}
+
+/* TEXT */
+
+.comment-text{
+
+    font-size:22px;
+
+    line-height:1.9;
+
+    color:#f4ecff;
+}
+    
 </style>
 </head>
 
@@ -598,6 +833,39 @@ footer{
     <!-- RÁMEČEK -->
     <img src="ramecek.png" alt="Rámeček" class="frame-img">
 
+     <!-- COMMENT SECTION -->
+
+<section class="comment-section">
+
+    <div class="comment-box">
+
+        <h2 class="comment-title">
+            KOMENTÁŘE
+        </h2>
+
+        <input type="text" id="username" placeholder="Jméno">
+
+        <input type="file" id="avatar" accept="image/*">
+
+        <textarea id="message" placeholder="Text komentáře..."></textarea>
+
+        <button onclick="addComment()" class="send-btn">
+            ODESLAT
+        </button>
+
+        <div class="format-help">
+            Podporované značky:
+            [b]tučně[/b]
+            [i]kurzíva[/i]
+            [u]podtržení[/u]
+        </div>
+
+    </div>
+
+    <div id="comments"></div>
+
+</section>
+        
     <!-- TEXT -->
     <div class="frame-content">
 
@@ -638,6 +906,98 @@ footer{
 <footer>
     © 2026 Eutopia RPG
 </footer>
+<script>
 
+function parseBBCode(text){
+
+    return text
+        .replace(/\[b\](.*?)\[\/b\]/gi, "<strong>$1</strong>")
+        .replace(/\[i\](.*?)\[\/i\]/gi, "<em>$1</em>")
+        .replace(/\[u\](.*?)\[\/u\]/gi, "<u>$1</u>")
+        .replace(/\n/g, "<br>");
+}
+
+function addComment(){
+
+    const username =
+        document.getElementById("username").value;
+
+    const message =
+        document.getElementById("message").value;
+
+    const avatarInput =
+        document.getElementById("avatar");
+
+    if(!username || !message){
+        return;
+    }
+
+    const comments =
+        document.getElementById("comments");
+
+    const comment =
+        document.createElement("div");
+
+    comment.className = "comment";
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        comment.innerHTML = `
+
+            <img src="${e.target.result}"
+            class="comment-avatar">
+
+            <div class="comment-content">
+
+                <div class="comment-name">
+                    ${username}
+                </div>
+
+                <div class="comment-text">
+                    ${parseBBCode(message)}
+                </div>
+
+            </div>
+
+        `;
+
+        comments.prepend(comment);
+    };
+
+    if(avatarInput.files[0]){
+
+        reader.readAsDataURL(
+            avatarInput.files[0]
+        );
+
+    } else {
+
+        comment.innerHTML = `
+
+            <div class="comment-content">
+
+                <div class="comment-name">
+                    ${username}
+                </div>
+
+                <div class="comment-text">
+                    ${parseBBCode(message)}
+                </div>
+
+            </div>
+
+        `;
+
+        comments.prepend(comment);
+    }
+
+    document.getElementById("username").value = "";
+    document.getElementById("message").value = "";
+    document.getElementById("avatar").value = "";
+}
+
+</script>
 </body>
 </html>
